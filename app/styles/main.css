@@ -1,0 +1,16 @@
+#page {
+    min-height: 250px;
+}
+
+.header-container {
+    padding-top: 3px;
+}
+
+.body-content {
+    height: 100%;
+    width: 100%;
+}
+
+.temp-section {
+    font-size: 15vh;
+}

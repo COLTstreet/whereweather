@@ -1,0 +1,52 @@
+<div id="page" layout="column" layout-align="stretch">
+    <div class="header-container" layout="column" layout-align="stretch" flex="10">
+        <div id="header-body" layout="row" layout-align="stretch">
+            <div id="logo-container" flex="25">
+                WhereWeather
+            </div>
+            <div id="header-search" layout="column" layout-aliogn="center center" flex="50">
+                <!--<md-input-container class="md-primary header-input">
+                    <label>Search</label>
+                    <md-icon class="fa fa-search" class="name"></md-icon>
+                    <input ng-model="searchValue" type="text" placeholder="Arlington, Va"> 
+                </md-input-container>-->
+                <div id="place-autocomplete">
+                    <md-autocomplete md-no-cache="false"
+                                    md-input-name="autocompleteField"
+                                    md-selected-item="selectedItem"
+                                    md-selected-item-change="getLatLng(item)"
+                                    ng-model-options="{debounce: 600}"
+                                    md-search-text-change="search(searchText)"
+                                    md-search-text="searchText"
+                                    md-items="item in search(searchText)"
+                                    md-item-text="item.description"
+                                    md-min-length="2"
+                                    md-max-length="50"
+                                    md-floating-label="Location (area and city)"
+                                    placeholder="Type your address">
+                    <md-item-template>
+                        <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.description}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No matches found for "{{searchText.description}}".
+                    </md-not-found>
+                    </md-autocomplete>
+                </div>
+            </div>
+            <div id="header-tools" flex="25">
+            </div>
+        </div>
+    </div>
+    <div class="body-container" flex="80">
+        <div class="body-content" flex="100" layout="column" layout-align="stretch">
+            <div layout="row" layout-align="center center">
+                <div class="temp-section">
+                    {{weatherReport.currently.apparentTemperature}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-container" flex="10">
+        
+    </div>
+</div>
