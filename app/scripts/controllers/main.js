@@ -60,7 +60,14 @@ angular.module('whereweatherApp')
 		function buildWeather() {
 			$scope.current = $scope.weatherReport.currently;
 
-			document.getElementById("body-content").className += " " + $scope.current.icon;
+			if(!$scope.weatherIcon) {
+				$scope.weatherIcon = $scope.current.icon;
+				document.getElementById("body-content").className += " " + $scope.current.icon;
+			} 
+			if($scope.weatherIcon !== $scope.current.icon) {
+				document.getElementById("body-content").className = document.getElementById("body-content").className.replace($scope.weatherIcon, $scope.current.icon);
+				$scope.weatherIcon = $scope.current.icon;
+			}
 		}
 
 		var getDetails = function(place) {
