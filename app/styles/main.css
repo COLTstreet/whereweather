@@ -14,3 +14,58 @@
 .temp-section {
     font-size: 15vh;
 }
+
+.footer {
+    background: #607D8B;
+}
+
+/*----------------------------------- Clouds --------------------------------------------------------- */
+
+.cloudy {
+    background-image: url(/images/cloud.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.clear-day {
+    background-image: url(/images/sun.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .8;
+}
+
+.clear-night {
+    background-image: url(/images/moon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .8;
+}
+
+/*.cloud, .cloudshadow {
+	width: 350px; height: 120px;
+	background: #3498db;
+	border-radius: 100px;
+	position: relative;
+	margin: 150px 50px;
+}
+.cloud:after, .cloud:before, .cloudshadow:after, .cloudshadow:before {
+	content: '';
+	position: absolute;
+	background: #3498db;
+	z-index: 1
+}
+.cloudshadow, .cloudshadow:after, .cloudshadow:before {
+    margin: 0;
+    box-shadow: 0 0 15px #2c3e50;
+    z-index: -99;
+}
+.cloud:after, .cloudshadow:after {
+	width: 100px; height: 100px;
+	top: -50px; left: 50px;
+	border-radius: 100px;
+}
+.cloud:before, .cloudshadow:before  {
+	width: 180px; height: 180px;
+	top: -90px; right: 50px;
+	border-radius: 200px;
+}*/

@@ -16,6 +16,7 @@ angular.module('whereweatherApp')
 		$scope.resize = resize;
 		$scope.search = search;
 		$scope.getLatLng = getLatLng;
+		$scope.buildWeather = buildWeather;
 
 		function search(input) {
 			if (!input) {
@@ -50,9 +51,16 @@ angular.module('whereweatherApp')
 					$scope.$apply(function() { // put $scope var that needs to be updated
 						$scope.weatherReport = parsed_json;     // inside a function inside $apply like this
 						console.log(parsed_json);
+						$scope.buildWeather();
 					});
 				}
 			});
+		}
+
+		function buildWeather() {
+			$scope.current = $scope.weatherReport.currently;
+
+			document.getElementById("body-content").className += " " + $scope.current.icon;
 		}
 
 		var getDetails = function(place) {
@@ -91,6 +99,8 @@ angular.module('whereweatherApp')
 			$scope.gmapsService = new google.maps.places.AutocompleteService();
 			$scope.map = new google.maps.Map(document.createElement('div'));
 			$scope.placeService = new google.maps.places.PlacesService($scope.map);
+
+			$scope.cloudy = false;
 		}
 
 		$scope.init();
