@@ -17,6 +17,7 @@ angular.module('whereweatherApp')
 		$scope.search = search;
 		$scope.getLatLng = getLatLng;
 		$scope.buildWeather = buildWeather;
+		$scope.makeItRain = makeItRain;
 
 		function search(input) {
 			if (!input) {
@@ -68,6 +69,14 @@ angular.module('whereweatherApp')
 				document.getElementById("body-content").className = document.getElementById("body-content").className.replace($scope.weatherIcon, $scope.current.icon);
 				$scope.weatherIcon = $scope.current.icon;
 			}
+
+			if($scope.current.icon === 'rain') {
+				$scope.raining = true;
+				$scope.makeItRain();
+			} else {
+				$scope.raining = false;
+			}
+			
 		}
 
 		var getDetails = function(place) {
@@ -94,6 +103,29 @@ angular.module('whereweatherApp')
 				$scope.getWeather();
 			});
         }
+
+		function makeItRain() {
+			//clear out everything
+			var increment = 0;
+			var drops = "";
+			var backDrops = "";
+
+			while (increment < 95) {
+				//couple random numbers to use for various randomizations
+				//random number between 98 and 1
+				var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
+				//random number between 5 and 2
+				var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
+				//increment
+				increment += randoFiver;
+				//add in a new raindrop with various randomizations to certain CSS properties
+				drops += '<div class="drop" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
+				backDrops += '<div class="drop" style="right: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
+			}
+
+			$('.rain.front-row').append(drops);
+			$('.rain.back-row').append(backDrops);
+		}
 
 		function resize() {
 			document.getElementById("page").style.height = $(window).height() + "px";
