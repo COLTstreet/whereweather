@@ -38,7 +38,7 @@ angular
   })
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
-        .primaryPalette('deep-purple')
+        .primaryPalette('light-blue')
         .accentPalette('light-blue')
         .warnPalette('orange')
         .backgroundPalette('grey')
