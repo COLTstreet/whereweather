@@ -35,17 +35,47 @@
             </div>
         </div>
     </div>
-    <div class="body-container" flex="85">
+    <div class="body-container" flex="75" style="background: #E0E0E0;">
         <div ng-show="raining" class="rain front-row"></div>
-        <div id="body-content" class="body-content" flex="100" layout="column" layout-align="stretch">
-            <div layout="column" layout-align="center center">
-                <div class="temp-section">
-                    {{weatherReport.currently.apparentTemperature}}
+        <div id="body-content" class="body-content" flex="100" layout="column" layout-align="stretch" ng-show="showWeather">
+            <div layout="column" layout-align="center center" flex="60">
+                <div layout="column" layout-align="center center" class="temp-section" flex="100">
+                    <div flex="5" style="font-size: 2.5vh; color: #303030">
+                        {{unixTime(weatherReport.currently.time)}}
+                    </div>
+                    <div flex="90" style="color: #303030;" layout="column" layout-align="start center">
+                        <div>
+                            {{weatherReport.currently.temperature}}°
+                        </div>
+                        <div flex="100" layout="column" layout-align="start start" class="temp-section-subtext">
+                            <div>
+                                Humidity: {{(100*weatherReport.currently.humidity).toFixed(0)}}%
+                            </div>
+                            <div>
+                                Chance of Rain: {{(100*weatherReport.currently.precipProbability).toFixed(0)}}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div layout="row" layout-align="center end" flex="40">
+                <div flex ng-repeat="day in weatherReport.daily.data track by $index" class="full-height day" layout="column" layout-align="start center" ng-show="$index != 0">
+                    <div class="day-header">
+                        {{unixTime(day.time)}}
+                    </div>
+                    <div class="day-body" flex="70" layout="column" layout-align="center center">
+                        <div>
+                            <md-icon class="day-icon" md-svg-src="/images/{{day.icon}}.svg"></md-icon>
+                        </div>
+                    </div>
+                    <div class="day-footer">
+                        Humidity: {{(100*day.humidity).toFixed(0)}}% </br>
+                        Chance of Rain: {{(100*day.precipProbability).toFixed(0)}}%
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="footer-container" flex="5">
-        
+    <div class="footer-container" flex="15">
     </div>
 </div>

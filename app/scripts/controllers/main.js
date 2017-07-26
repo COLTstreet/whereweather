@@ -18,6 +18,8 @@ angular.module('whereweatherApp')
 		$scope.getLatLng = getLatLng;
 		$scope.buildWeather = buildWeather;
 		$scope.makeItRain = makeItRain;
+		$scope.unixTime = unixTime;
+		$scope.getLocation = getLocation;
 
 		function search(input) {
 			if (!input) {
@@ -37,25 +39,72 @@ angular.module('whereweatherApp')
 			});
 			return deferred.promise;
 		}
+
+		function unixTime(t) {
+			var dt = new Date(t*1000);
+			
+			//Weekday variable holder
+			var weekday = new Array(7);
+			weekday[0] =  "Sunday";
+			weekday[1] = "Monday";
+			weekday[2] = "Tuesday";
+			weekday[3] = "Wednesday";
+			weekday[4] = "Thursday";
+			weekday[5] = "Friday";
+			weekday[6] = "Saturday";
+
+			var dayOfWeek = weekday[dt.getDay()];
+
+			//Month variable holder
+			var month = new Array();
+			month[0] = "January";
+			month[1] = "February";
+			month[2] = "March";
+			month[3] = "April";
+			month[4] = "May";
+			month[5] = "June";
+			month[6] = "July";
+			month[7] = "August";
+			month[8] = "September";
+			month[9] = "October";
+			month[10] = "November";
+			month[11] = "December";
+
+			var monthOfYear = month[dt.getMonth()];
+
+
+			return dayOfWeek + ", " + monthOfYear + " " + dt.getDate() + " " + dt.getFullYear();
+		}
 		
 
-		function getWeather() {
+		function getWeather(position) {
 			//Beginning of code
 			//Makes the request
-			$.ajax({
-				url : "https://api.darksky.net/forecast/d9073d8d9951961b9307c814cc925140/" + $scope.searchLocationInfo.latitude + "," + $scope.searchLocationInfo.longitude,
-				dataType : "jsonp",
-				success : function(parsed_json) {
-					// var location = parsed_json['timezone'];
-					// var temp_f = parsed_json['currently']['temperature'];
-					// var complete = ("Current temperature in " + location + " is: " + temp_f);
-					$scope.$apply(function() { // put $scope var that needs to be updated
-						$scope.weatherReport = parsed_json;     // inside a function inside $apply like this
-						console.log(parsed_json);
-						$scope.buildWeather();
-					});
-				}
-			});
+			if(position) {
+				$.ajax({
+					url : "https://api.darksky.net/forecast/d9073d8d9951961b9307c814cc925140/" + position.coords.latitude + "," + position.coords.longitude,
+					dataType : "jsonp",
+					success : function(parsed_json) {
+						$scope.$apply(function() { // put $scope var that needs to be updated
+							$scope.weatherReport = parsed_json;     // inside a function inside $apply like this
+							console.log(parsed_json);
+							$scope.buildWeather();
+						});
+					}
+				});
+			} else {
+				$.ajax({
+					url : "https://api.darksky.net/forecast/d9073d8d9951961b9307c814cc925140/" + $scope.searchLocationInfo.latitude + "," + $scope.searchLocationInfo.longitude,
+					dataType : "jsonp",
+					success : function(parsed_json) {
+						$scope.$apply(function() { // put $scope var that needs to be updated
+							$scope.weatherReport = parsed_json;     // inside a function inside $apply like this
+							console.log(parsed_json);
+							$scope.buildWeather();
+						});
+					}
+				});
+			}
 		}
 
 		function buildWeather() {
@@ -77,6 +126,7 @@ angular.module('whereweatherApp')
 				$scope.raining = false;
 			}
 			
+			$scope.showWeather = true;
 		}
 
 		var getDetails = function(place) {
@@ -130,6 +180,17 @@ angular.module('whereweatherApp')
 		function resize() {
 			document.getElementById("page").style.height = $(window).height() + "px";
 		}
+
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position){
+					$scope.$apply(function(){
+						$scope.browserPosition = position;
+						$scope.getWeather($scope.browserPosition);
+					});
+				});
+			}
+		}
 		
 		function init() {
 			$scope.resize();
@@ -140,6 +201,8 @@ angular.module('whereweatherApp')
 			$scope.placeService = new google.maps.places.PlacesService($scope.map);
 
 			$scope.cloudy = false;
+
+			$scope.getLocation();
 		}
 
 		$scope.init();
