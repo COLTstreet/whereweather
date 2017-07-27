@@ -58,10 +58,6 @@
   font-size: 1.5vh;
 }
 
-.md-autocomplete-suggestions-container{  
-  z-index: 100000 !important; /* any number of choice > 1050*/
-}
-
 /*----------------------------------- Weather --------------------------------------------------------- */
 
 .cloudy {
@@ -90,6 +86,12 @@
 
 .clear-night {
     background-image: url(/images/moon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.snow {
+    background-image: url(/images/snow.png);
     background-repeat: no-repeat;
     background-size: cover;
 }

@@ -54,6 +54,9 @@
                             <div>
                                 Chance of Rain: {{(100*weatherReport.currently.precipProbability).toFixed(0)}}%
                             </div>
+                            <div>
+                                Summary: {{weatherReport.currently.summary}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,6 +79,36 @@
             </div>
         </div>
     </div>
-    <div class="footer-container" flex="15">
+    <div class="footer-container" flex="15" layout="column" layout-align="center center ">
+        <div>
+            <a href="https://darksky.net/poweredby" target="_blank" style="color:#989898">Powered by Dark Sky</a>
+        </div>
+        </br>
+        <div layout="row">
+            <div>
+                <md-button class="md-fab md-mini md-primary" ng-href="https://www.linkedin.com/in/colt-street-b1b34946" target="_blank" aria-label="LinkedIn">
+                    <i class="fa fa-linkedin-square fa-lg" aria-hidden="true" aria-label="linkedin"></i>
+                    <md-tooltip>LinkedIn</md-tooltip>
+                </md-button>
+            </div>
+            <div>
+                <md-button class="md-fab md-mini md-primary" ng-href="https://github.com/COLTstreet" target="_blank" aria-label="GitHub">
+                    <i class="fa fa-git-square fa-lg" aria-hidden="true" aria-label="GitHub"></i>
+                    <md-tooltip>GitHub</md-tooltip>
+                </md-button>
+            </div>
+            <div>
+                <md-button class="md-fab md-mini md-primary" ng-href="mailto:colt.k.street@gmail.com?Subject=Hello!" target="_blank" aria-label="Gmail">
+                    <i class="fa fa-envelope" aria-hidden="true" aria-label="Gmail"></i>
+                    <md-tooltip>Gmail</md-tooltip>
+                </md-button>
+            </div>
+            <div>
+                <md-button class="md-fab md-mini md-primary" ng-href="https://plus.google.com/u/0/116028321943063867870" target="_blank" aria-label="Google+">
+                    <i class="fa fa-google-plus" aria-hidden="true" aria-label="Google"></i>
+                    <md-tooltip>Google+</md-tooltip>
+                </md-button>
+            </div>
+        </div>
     </div>
 </div>
