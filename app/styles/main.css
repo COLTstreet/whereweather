@@ -61,37 +61,37 @@
 /*----------------------------------- Weather --------------------------------------------------------- */
 
 .cloudy {
-    background-image: url(/images/cloud.png);
+    background-image: url(images/cloud.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .partly-cloudy-day {
-    background-image: url(/images/partly-cloudy.png);
+    background-image: url(images/partly-cloudy.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .partly-cloudy-night {
-    background-image: url(/images/partly-cloudy-night.png);
+    background-image: url(images/partly-cloudy-night.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .clear-day {
-    background-image: url(/images/sun.png);
+    background-image: url(images/sun.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .clear-night {
-    background-image: url(/images/moon.png);
+    background-image: url(images/moon.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .snow {
-    background-image: url(/images/snow.png);
+    background-image: url(images/snow.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
