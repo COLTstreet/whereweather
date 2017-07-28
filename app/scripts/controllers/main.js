@@ -20,6 +20,7 @@ angular.module('whereweatherApp')
 		$scope.makeItRain = makeItRain;
 		$scope.unixTime = unixTime;
 		$scope.getLocation = getLocation;
+		$scope.setIconBooleans = setIconBooleans;
 
 		function search(input) {
 			if (!input) {
@@ -125,9 +126,36 @@ angular.module('whereweatherApp')
 			} else {
 				$scope.raining = false;
 			}
+
+			$scope.setIconBooleans();
 			
 			$scope.showWeather = true;
-		}
+		};
+
+		function setIconBooleans() {
+			for(var i = 0; i < $scope.weatherReport.daily.data.length; i++){
+				var d = $scope.weatherReport.daily.data[i];
+				if(d.icon === "rain"){
+					d.rain = true;
+				} else if(d.icon === "clear-day"){
+					d.clearDay = true;
+				} else if(d.icon === "clear-night"){
+					d.clearNight = true;
+				} else if(d.icon === "rain"){
+					d.rain = true;
+				} else if(d.icon === "cloudy"){
+					d.cloudy = true;
+				} else if(d.icon === "partly-cloudy-day"){
+					d.partlyCloudyDay = true;
+				} else if(d.icon === "partly-cloudy-night"){
+					d.partlyCloudyNight = true;
+				} else if(d.icon === "snow"){
+					d.snow = true;
+				} else if(d.icon === "sleet"){
+					d.sleet = true;
+				}
+			}
+		};
 
 		var getDetails = function(place) {
 			var deferred = $q.defer();

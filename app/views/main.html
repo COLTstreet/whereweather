@@ -67,8 +67,29 @@
                         {{unixTime(day.time)}}
                     </div>
                     <div class="day-body" flex="70" layout="column" layout-align="center center">
-                        <div>
-                            <md-icon class="day-icon" md-svg-src="images/{{day.icon}}.svg"></md-icon>
+                        <div ng-if="day.clearDay">
+                            <md-icon class="day-icon" md-svg-src="images/clear-day.svg"></md-icon>
+                        </div>
+                        <div ng-if="day.clearNight">
+                            <md-icon class="day-icon" md-svg-src="images/clear-night.svg"></md-icon>
+                        </div>
+                        <div ng-if="day.rain">
+                            <md-icon class="day-icon" md-svg-src="images/rain.svg"></md-icon>
+                        </div>
+                        <div ng-if="day.cloudy">
+                            <md-icon class="day-icon" md-svg-src="images/cloudy.svg"></md-icon>
+                        </div>
+                        <div ng-if="day.partlyCloudyDay">
+                            <md-icon class="day-icon" md-svg-src="images/partly-cloudy-day.svg"></md-icon>
+                        </div>
+                        <div ng-if="day.partlyCloudyNight">
+                            <md-icon class="day-icon" md-svg-src="images/partly-cloudy-night.svg"></md-icon>
+                        </div>
+                        <div ng-if="day.snow">
+                            <md-icon class="day-icon" md-svg-src="images/snow.svg"></md-icon>
+                        </div>
+                        <div ng-if="day.sleet">
+                            <md-icon class="day-icon" md-svg-src="images/sleet.svg"></md-icon>
                         </div>
                     </div>
                     <div class="day-footer">
