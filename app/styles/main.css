@@ -245,3 +245,10 @@
 .body-container.single-toggle .drop:nth-child(10) {
   display: block;
 }
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    min-width: 300px;
+  }
+}
